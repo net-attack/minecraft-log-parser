@@ -1,12 +1,12 @@
 
 <?php
-require('lib/gantti.php'); 
+require('gantti/lib/gantti.php'); 
 Include ('minecraft-utils/MinecraftParser.php');
 
 $minecraftParser = new MinecraftParser("logs/");
 $data = $minecraftParser->printInfo();
-//echo "<pre/>";
-//print_r($data);
+echo "<pre/>";
+print_r($data);
 		
 date_default_timezone_set('UTC');
 setlocale(LC_ALL, 'en_US');

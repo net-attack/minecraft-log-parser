@@ -41,7 +41,7 @@ class User {
 			}
 			if($found_start !== false) {
 				if ($found_end !== false){
-					$timeOnServer = round((strtotime($end)-strtotime($start))/3600,0);
+					$timeOnServer = round((strtotime($end)-strtotime($start))/3600,1);
 					if($timeOnServer<0){
 						$timeOnServer = $timeOnServer + 24;
 					}
