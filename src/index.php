@@ -5,15 +5,13 @@ Include ('minecraft-utils/MinecraftParser.php');
 
 $minecraftParser = new MinecraftParser("logs/");
 $data = $minecraftParser->printInfo();
-echo "<pre/>";
-print_r($data);
 		
 date_default_timezone_set('UTC');
 setlocale(LC_ALL, 'en_US');
 
 $gantti = new Gantti($data, array(
   'title'      => 'Minecraft',
-  'cellwidth'  => 25,
+  'cellwidth'  => 50,
   'cellheight' => 35,
   'today'      => true
 ));
@@ -30,8 +28,8 @@ $gantti = new Gantti($data, array(
   <title>Minecraft Gantt Chart nach Mahatma Gantti </title>
   <meta charset="utf-8" />
 
-  <link rel="stylesheet" href="styles/css/screen.css" />
-  <link rel="stylesheet" href="styles/css/gantti.css" />
+  <link rel="stylesheet" href="gantti/styles/css/screen.css" />
+  <link rel="stylesheet" href="gantti/styles/css/gantti.css" />
 
   <!--[if lt IE 9]>
   <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -52,5 +50,6 @@ $gantti = new Gantti($data, array(
 
 
 </body>
+
 
 </html>
