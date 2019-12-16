@@ -3,18 +3,18 @@ Include ('User.php');
 class MinecraftParser {
 	
 	var $Users;
-	
+
 	function __construct($folder)
     {
 		$this->Users = array();
-		foreach (glob("*.log") as $filename) {
+		foreach (glob($folder . "*.log") as $filename) {
 			$this->parseFile($filename);
 		}
 	}
 	
 	function parseFile($file){
 		$data = file($file,FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-		$filedate  = substr($file,0,strlen($file)-6);
+		$filedate  = substr($file,strlen($file)-16,10);
 			
 		foreach ($data as $dat){ // iterate over file() generated array
 			$time  = substr($dat,1,8);
