@@ -1,2 +1,2 @@
 # Please install
-https://github.com/bastianallgeier/gantti
+git clone https://github.com/net-attack/gantti.git

@@ -28,34 +28,67 @@ class User {
 		$enddate = "";
 		$found_start = false;
 		$found_end= false;
+		$timeOnServer = 0;
 		foreach ($this->Actions as &$action) {
 			if (strpos($action->action, "logged in") !== false){
-				$start = $action->time;
-				$found_start = true;
-				$startdate  = $action->date;
+				
+				if($found_start){
+					$start = $action->time;
+				}else{
+					$start = $action->time;
+					$startdate  = $action->date;
+					$found_start = true;
+				}
 			}
 			if (strpos($action->action, "left the game") !== false){
-				$end = $action->time;
-				$found_end = true;
-				$enddate  = $action->date;
-			}
-			if($found_start !== false) {
-				if ($found_end !== false){
-					$timeOnServer = round((strtotime($end)-strtotime($start))/3600,1);
-					if($timeOnServer<0){
-						$timeOnServer = $timeOnServer + 24;
-					}
-					$data[] = array(
+				if($found_start !== false) {
+					$end = $action->time;
+					$enddate = $action->date;
+					
+					if (strpos($enddate, $startdate) !== false){
+						$timeOnServer = $timeOnServer + (strtotime($end)-strtotime($start))/3600;
+						
+						
+					}else{
+					   $temptime = (strtotime($end)-strtotime($start))/3600;
+					    						
+						if($temptime<0){
+							$temptime = $temptime + 24;
+						} 
+
+						$timeOnServer = $timeOnServer + $temptime;
+						
+						$data[] = array(
 						  'label' => $this->Name,
 						  'start' => $startdate, 
 						  'end'   => $enddate,
-						  'class' => $timeOnServer
+						  'class' => round($timeOnServer,1)
 						);
-					$found_start = false;
-					$found_end= false;
+						$timeOnServer = 0;
+						$found_start = false;
+						$found_end= false;
+						$start = "";
+						$end = "";
+						$startdate  = "";
+						$enddate = "";
+					}
+				}else{
+					$timeOnServer = 0;
+						$found_start = false;
+						$found_end= false;
+						$start = "";
+						$end = "";
+						$startdate  = "";
+						$enddate = "";
 				}
 			}
 		}
+		$data[] = array(
+						  'label' => $this->Name,
+						  'start' => $startdate, 
+						  'end'   => $enddate,
+						  'class' => round($timeOnServer,1)
+						);
 		return $data;
 	}
 } 
