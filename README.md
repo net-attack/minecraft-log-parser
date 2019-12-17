@@ -1,21 +1,34 @@
 # minecraft-log-parser
 Small Php example with Mahatma Gantti
 ## Dependencies
-* sudo apt install php
-
-
+To run localhost php server
+```
+sudo apt install php
+```
 ## Install
+```
+git clone https://github.com/net-attack/minecraft-log-parser.git
+cd minecraft-log-parser
+```
+
+### Add Gantti libary
+```
+git clone https://github.com/net-attack/gantti.git
+```
+or
+```
+.\getGantii
+```
+
+### Change Config 
 
 Edit the index.php and change folder of
 ```
-$minecraftParser = new MinecraftParser("logs/"); //Change to your server log folder containing *.log
-$data = $minecraftParser->printInfo();
+$minecraftParser = new MinecraftParser("logs/"); //Change to your server log folder containing *.log.gz
 ```
 
 ## Run
 
 ```
-git clone https://github.com/net-attack/minecraft-log-parser.git
-cd src 
 php -S localhost:8000
 ```
