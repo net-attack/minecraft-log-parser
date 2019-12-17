@@ -7,16 +7,16 @@ class MinecraftParser {
 	function __construct($folder)
     {
 		$this->Users = array();
-		foreach (glob($folder . "*.log") as $filename) {
+		foreach (glob($folder . "*.log.gz") as $filename) {
 			$this->parseFile($filename);
 		}
 	}
 	
 	function parseFile($file){
-		$data = file($file,FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+		$gzlogfile = file_get_contents($file);
+		$logfile = gzdecode($gzlogfile);
 		$filedate  = substr($file,strlen($file)-16,10);
-			
-		foreach ($data as $dat){ // iterate over file() generated array
+		foreach(preg_split("/((\r?\n)|(\r\n?))/", $logfile) as $dat) { // iterate over each line
 			$time  = substr($dat,1,8);
 			preg_match_all("/\\[(.*?)\\]/", $dat, $matches); 
 			$info = $matches[1][1];
