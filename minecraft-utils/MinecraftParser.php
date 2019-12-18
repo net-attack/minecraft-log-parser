@@ -8,14 +8,14 @@ class MinecraftParser {
     {
 		$this->Users = array();
 		foreach (glob($folder . "*.log.gz") as $filename) {
-			$this->parseFile($filename);
+			$filedate  = substr($filename,strlen($folder),10);
+			$this->parseFile($filename, $filedate);
 		}
 	}
 	
-	function parseFile($file){
+	function parseFile($file, $filedate){
 		$gzlogfile = file_get_contents($file);
 		$logfile = gzdecode($gzlogfile);
-		$filedate  = substr($file,strlen($file)-16,10);
 		foreach(preg_split("/((\r?\n)|(\r\n?))/", $logfile) as $dat) { // iterate over each line
 			$time  = substr($dat,1,8);
 			preg_match_all("/\\[(.*?)\\]/", $dat, $matches); 

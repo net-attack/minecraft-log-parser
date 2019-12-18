@@ -3,9 +3,11 @@
 require('gantti/lib/gantti.php'); 
 Include ('minecraft-utils/MinecraftParser.php');
 
-$minecraftParser = new MinecraftParser("logs/");
+$minecraftParser = new MinecraftParser("test/");
 $data = $minecraftParser->printInfo();
-		
+echo "<pre/>";
+print_r($data);
+
 date_default_timezone_set('UTC');
 setlocale(LC_ALL, 'en_US');
 
@@ -15,7 +17,6 @@ $gantti = new Gantti($data, array(
   'cellheight' => 35,
   'today'      => true
 ));
-
 
 
 ?>
