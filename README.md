@@ -1,5 +1,9 @@
+
 # minecraft-log-parser
+[![Release][release-image]][releases]
+
 Small Php example with Mahatma Gantti
+
 ## Dependencies
 To run localhost php server
 ```
@@ -10,6 +14,7 @@ sudo apt install php
 git clone https://github.com/net-attack/minecraft-log-parser.git
 cd minecraft-log-parser
 ```
+
 
 ### Add Gantti libary
 ```
@@ -32,3 +37,6 @@ $minecraftParser = new MinecraftParser("logs/"); //Change to your server log fol
 ```
 php -S localhost:8000
 ```
+
+[release-image]: https://img.shields.io/badge/build-passing-brightgreen
+[releases]: https://github.com/net-attack/minecraft-log-parser/releases
